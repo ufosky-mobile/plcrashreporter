@@ -9,11 +9,24 @@ Pod::Spec.new do |spec|
   spec.license     = { :type => 'MIT', :file => 'LICENSE.txt' }
   spec.authors     = { 'Microsoft' => 'appcentersdk@microsoft.com' }
 
-  spec.source      = { :http     => "https://github.com/microsoft/plcrashreporter/releases/download/#{spec.version}/PLCrashReporter-Static-#{spec.version}.xcframework.zip",
-                       :flatten  => true }
+  spec.source      = { :git => 'https://github.com/ufosky-mobile/plcrashreporter.git', :tag => "#{spec.version}", :flatten => true }
 
   spec.ios.deployment_target    = '11.0'
   spec.osx.deployment_target    = '10.9'
   spec.tvos.deployment_target   = '11.0'
-  spec.vendored_frameworks = "CrashReporter.xcframework"
+  
+  spec.source_files  = 'Source/*.{h,hpp,c,cpp,m,mm,s}', 'Dependencies/protobuf-c/protobuf-c/*.{h,c}'
+  
+  spec.public_header_files = 'Source/*.{h,hpp}'
+  spec.header_dir = 'Dependencies/protobuf-c'
+  spec.header_mappings_dir = 'Dependencies/protobuf-c'
+  spec.preserve_paths = 'Dependencies/**'
+
+  spec.pod_target_xcconfig = {
+      "GCC_PREPROCESSOR_DEFINITIONS" => "PLCR_PRIVATE PLCF_RELEASE_BUILD"
+  }
+  spec.libraries = "c++"
+  spec.requires_arc = false
+
+  spec.prefix_header_contents = '#import "PLCrashNamespace.h"'
 end
