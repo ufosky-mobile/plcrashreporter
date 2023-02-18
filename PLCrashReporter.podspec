@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
   spec.license     = { :type => 'MIT', :file => 'LICENSE.txt' }
   spec.authors     = { 'Microsoft' => 'appcentersdk@microsoft.com' }
 
-  spec.source      = { :git => 'https://github.com/ufosky-mobile/plcrashreporter.git', :tag => "#{spec.version}", :flatten => true }
+  spec.source      = { :git => 'https://github.com/ufosky-mobile/plcrashreporter.git', :branch => "master", :flatten => true }
 
   spec.ios.deployment_target    = '11.0'
   spec.osx.deployment_target    = '10.9'
