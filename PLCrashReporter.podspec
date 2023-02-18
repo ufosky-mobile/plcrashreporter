@@ -15,18 +15,19 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target    = '10.9'
   spec.tvos.deployment_target   = '11.0'
   
+  spec.module_name = 'CrashReporter'
   spec.source_files  = 'Source/*.{h,hpp,c,cpp,m,mm,s}', 'Dependencies/protobuf-c/protobuf-c/*.{h,c}'
   
-  spec.public_header_files = 'Source/*.{h,hpp}'
-  spec.header_dir = 'Dependencies/protobuf-c'
-  spec.header_mappings_dir = 'Dependencies/protobuf-c'
+  spec.public_header_files = 'Source/*.{h}', 'Dependencies/protobuf-c/protobuf-c/*.{h}'
+  # spec.header_dir = 'Dependencies/protobuf-c'
+  # spec.header_mappings_dir = 'Dependencies/protobuf-c'
   spec.preserve_paths = 'Dependencies/**'
 
   spec.pod_target_xcconfig = {
       "GCC_PREPROCESSOR_DEFINITIONS" => "PLCR_PRIVATE PLCF_RELEASE_BUILD"
   }
   spec.libraries = "c++"
-  spec.requires_arc = false
+  spec.requires_arc = true
 
   spec.prefix_header_contents = '#import "PLCrashNamespace.h"'
 end
